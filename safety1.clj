@@ -1,5 +1,7 @@
-(ns epistemic-logic.core
-  (:require [clojure.core.logic :refer :all]))
+(ns safety1 ;; note to self: ns stands for namespace, so make this actually match the name of the file, genius...
+  (:refer-clojure :exclude [==])
+  (:require [clojure.core.logic :refer [all == fresh membero project run* q w u#]]))
+
 
 ;; Define some worlds as data
 (def worlds 
@@ -23,4 +25,4 @@
         (all
           (safe-worldo w)       ;; Apply safety logic
           (== q (:id w)))       ;; If it passes, return the world ID
-        fail))))                ;; If too far, this path fails
+        u#))))                ;; If too far, this path fails
